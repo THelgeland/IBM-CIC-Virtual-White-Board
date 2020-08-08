@@ -2,7 +2,9 @@
 
 ## The Participant
 
-Hi, my name is Torkil and for the purposes of this case I will play the role of backend developer.
+Hi, my name is Torkil and for the purposes of this case I have played the role of backend developer. I have developed most of the features related to Login, and Role Management as well as most of the Virtual Board tasks nok relating to the frontend specifically.
+
+It is possible to submit, view and delete posts and comments. All resources are authenticated and the Admin (user: sam@virtualboard.com, pass: adminpass) is able to view everything as well as add new regular users and delete other people's post.
 
 ## Tech stack
 
