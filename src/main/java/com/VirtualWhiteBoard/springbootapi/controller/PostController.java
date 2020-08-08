@@ -53,7 +53,7 @@ public class PostController {
      * @param post The Post object to be inserted into the database
      * @return A ResponseEntity with the new post as the body, the 201 created code as well as a self-refering URI
      */
-    @PostMapping("/posts/")
+    @PostMapping("/posts")
     ResponseEntity<?> createPost(@RequestBody Post post) {
         post.setOwner(SecurityContextHolder.getContext().getAuthentication().getName());
         post.setDateCreated(LocalDateTime.now());

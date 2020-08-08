@@ -23,8 +23,8 @@ public class InMemorySecurityConfigurerAdapter extends WebSecurityConfigurerAdap
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.httpBasic().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/register/**").hasRole("ADMIN")
-                .antMatchers("/users/**").hasRole("ADMIN")
+                .antMatchers("/register/**").hasRole(Constants.MODERATOR_ROLE)
+                .antMatchers("/users/**").hasRole(Constants.MODERATOR_ROLE)
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated();
     }

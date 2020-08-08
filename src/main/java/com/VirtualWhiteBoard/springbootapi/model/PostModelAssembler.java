@@ -5,7 +5,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import com.VirtualWhiteBoard.springbootapi.controller.PostController;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostModelAssembler implements RepresentationModelAssembler<Post, EntityModel<Post>> {
     @Override
     public EntityModel<Post> toModel(Post post) {
