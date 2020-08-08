@@ -21,13 +21,11 @@ public class InMemorySecurityConfigurerAdapter extends WebSecurityConfigurerAdap
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity.httpBasic().and().csrf().disable()
                 .authorizeRequests()
                 //.antMatchers("/users/**").hasRole("ADMIN")
                 .antMatchers("/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin();
+                .anyRequest().authenticated();
     }
 
     @Bean

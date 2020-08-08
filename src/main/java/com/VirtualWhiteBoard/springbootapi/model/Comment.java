@@ -9,15 +9,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "WHITE_BOARD_POST")
-public class Post {
+@Table(name = "WHITE_BOARD_COMMENT")
+public class Comment {
     private @Id @GeneratedValue Long id;
-    private String content;
+    private Long postId;
+    private String comment;
     private LocalDateTime dateCreated;
     private String owner;
     //private Set<String> likes = new HashSet<>();
 
-    public Post() {}
+    public Comment() {}
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
 
     public Long getId() {
         return id;
@@ -27,12 +36,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getComment() {
+        return comment;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public LocalDateTime getDateCreated() {

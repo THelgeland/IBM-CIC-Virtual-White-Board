@@ -53,14 +53,18 @@ public class PostController {
      */
     @DeleteMapping("/{id}")
     void deletePost(@PathVariable Long id) {
+        if (!isAuthorizedToDelete(id)) {
+            return;
+        }
+        postRepository.deleteById(id);
+    }
+
+    private boolean isAuthorizedToDelete(Long id) {
         Post post = getOne(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isModerator = authentication.getAuthorities().
                 contains(new SimpleGrantedAuthority(Constants.MODERATOR_ROLE));
         boolean isOwner = authentication.getName().equals(post.getOwner());
-        if (!isOwner && !isModerator) {
-            return;
-        }
-        postRepository.deleteById(id);
+        return isOwner || isModerator;
     }
 }
