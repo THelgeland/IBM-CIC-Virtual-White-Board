@@ -1,5 +1,6 @@
 package com.VirtualWhiteBoard.springbootapi.securityconfig;
 
+import com.VirtualWhiteBoard.springbootapi.util.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,20 +23,20 @@ public class InMemorySecurityConfigurerAdapter extends WebSecurityConfigurerAdap
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users/**").hasRole("ADMIN")
+                //.antMatchers("/users/**").hasRole("ADMIN")
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .formLogin();
     }
 
     @Bean
     public InMemoryUserDetailsManager getInitialDetailsManager() {
         InMemoryUserDetailsManager detailsManager = new InMemoryUserDetailsManager();
-        detailsManager.createUser(User.withUsername("sam@virtualboard.com").password("{noop}adminpass")
-                .roles("USER", "ADMIN").build());
-        detailsManager.createUser(User.withUsername("bertha@virtualboard.com").password("{noop}berthapass")
-                .roles("USER").build());
+        detailsManager.createUser(User.withUsername("sam"+Constants.VIRTUAL_BOARD_EMAIL).password("{noop}adminpass")
+                .roles(Constants.USER_ROLE, Constants.MODERATOR_ROLE).build());
+        detailsManager.createUser(User.withUsername("team"+Constants.VIRTUAL_BOARD_EMAIL).password("{noop}teampass")
+                .roles(Constants.USER_ROLE).build());
         return detailsManager;
     }
 }
